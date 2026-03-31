@@ -1,0 +1,8 @@
+☸️ Kubernetes: Services
+Seg: ClusterIP
+Ter: NodePort
+Qua: endpoints
+Qui: debug de service
+Sex: resumo geral de services
+Sáb (LAB): aplicação exposta via NodePort
+Dom: revisão + documentação

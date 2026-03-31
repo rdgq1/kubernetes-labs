@@ -1,0 +1,127 @@
+🔥 Cluster / Configuração
+
+kubectl version ---- mostra versão do kubectl e do cluster (control plane)
+
+kubectl cluster-info ---- mostra informações do cluster e endpoints principais
+
+kubectl config get-contexts ---- lista todos os clusters/contextos configurados
+
+kubectl config use-context NOME ---- troca para o cluster/contexto escolhido
+
+kubectl get nodes ---- lista os nós (workers) do cluster
+
+kubectl describe node NOME ---- mostra detalhes do node (recursos, pods rodando, eventos)
+
+📦 Pods
+
+kubectl get pods ---- lista pods do namespace atual
+
+kubectl get pods -o wide ---- lista pods com mais detalhes (IP, node, etc)
+
+kubectl describe pod NOME ---- mostra detalhes do pod (containers, status, eventos)
+
+kubectl logs NOME ---- mostra logs do container do pod
+
+kubectl logs -f NOME ---- acompanha logs em tempo real (modo follow)
+
+kubectl logs NOME --previous ---- mostra logs do container anterior (útil quando crashou)
+
+kubectl exec -it NOME -- bash ---- entra no container do pod via terminal interativo
+
+kubectl delete pod NOME ---- remove o pod (se for deployment, ele recria automaticamente)
+
+📂 Namespace
+
+kubectl get ns ---- lista namespaces existentes
+
+kubectl create ns NOME ---- cria um namespace novo
+
+kubectl get pods -n NAMESPACE ---- lista pods de um namespace específico
+
+kubectl delete ns NOME ---- apaga o namespace e tudo que estiver dentro
+
+🚀 Deployments
+
+kubectl get deploy ---- lista deployments
+
+kubectl describe deploy NOME ---- mostra detalhes do deployment
+
+kubectl scale deploy NOME --replicas=3 ---- aumenta/diminui quantidade de pods
+
+kubectl rollout status deploy NOME ---- acompanha atualização do deployment
+
+kubectl rollout history deploy NOME ---- mostra histórico de versões do deployment
+
+kubectl rollout undo deploy NOME ---- volta para a versão anterior
+
+kubectl delete deploy NOME ---- remove o deployment
+
+🔁 ReplicaSets
+
+kubectl get rs ---- lista replicasets
+
+kubectl describe rs NOME ---- mostra detalhes do replicaset
+
+🌐 Services (Rede)
+
+kubectl get svc ---- lista serviços (ClusterIP, NodePort, LoadBalancer)
+
+kubectl describe svc NOME ---- mostra detalhes do serviço
+
+kubectl expose deploy NOME --type=ClusterIP --port=80 ---- cria um service apontando para o deployment
+
+kubectl delete svc NOME ---- remove o service
+
+📄 YAML / Aplicações
+
+kubectl apply -f arquivo.yaml ---- cria ou atualiza recursos usando YAML
+
+kubectl delete -f arquivo.yaml ---- remove recursos definidos no YAML
+
+kubectl get all ---- lista os recursos principais do namespace atual
+
+kubectl get all -n NAMESPACE ---- lista tudo dentro de um namespace específico
+
+🔍 Troubleshooting / Debug
+
+kubectl get events ---- lista eventos do cluster/namespace
+
+kubectl get events --sort-by=.metadata.creationTimestamp ---- lista eventos ordenados por tempo
+
+kubectl top nodes ---- mostra uso de CPU/RAM dos nodes (precisa metrics-server)
+
+kubectl top pods ---- mostra uso de CPU/RAM dos pods (precisa metrics-server)
+
+🔌 Acessar aplicação (Port Forward)
+
+kubectl port-forward pod/NOME 8080:80 ---- abre acesso local para um pod (localhost:8080 → porta 80 do pod)
+
+kubectl port-forward svc/NOME 8080:80 ---- abre acesso local para um service
+
+🧾 ConfigMap e Secret
+
+kubectl get cm ---- lista ConfigMaps
+
+kubectl describe cm NOME ---- mostra dados de um ConfigMap
+
+kubectl get secret ---- lista Secrets
+
+kubectl describe secret NOME ---- mostra informações do Secret (valores ficam codificados)
+
+📌 Storage
+
+kubectl get pv ---- lista volumes persistentes disponíveis no cluster
+
+kubectl get pvc ---- lista pedidos de volume persistente feitos pelos pods
+
+kubectl describe pvc NOME ---- mostra detalhes do PVC (se conectou em algum PV)
+
+🔐 Permissões / RBAC
+
+kubectl get sa ---- lista service accounts
+
+kubectl get roles ---- lista roles (permissões) no namespace
+
+kubectl get rolebindings ---- lista quem está vinculado a roles
+
+kubectl auth can-i get pods ---- testa se você tem permissão para executar algo
